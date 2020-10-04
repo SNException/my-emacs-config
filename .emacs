@@ -63,9 +63,9 @@
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 (define-key global-map (kbd "M-q") 'quick-calc)
-(define-key global-map (kbd "C-,") 'beginning-of-buffer)
-(define-key global-map (kbd "C-.") 'end-of-buffer)
 (define-key global-map (kbd "C-z") 'undo)
+(define-key global-map (kbd "C-ü") 'beginning-of-buffer)
+(define-key global-map (kbd "C-+") 'end-of-buffer)
 (define-key global-map (kbd "C-x e") 'async-shell-command)
 (define-key global-map (kbd "C-x g") 'goto-line)
 (define-key global-map (kbd "C-x C-a") 'mark-whole-buffer)
@@ -81,6 +81,14 @@
   (end-of-line)
   (newline)
   (indent-according-to-mode))
+
+(defun rem ()
+  (interactive)
+  (beginning-of-line)
+  (insert "// ")
+  (end-of-line))
+
+(global-set-key (kbd "C-,") 'rem)
 
 (defun scroll-half-page-down ()
   (interactive)
