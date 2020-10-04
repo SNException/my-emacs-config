@@ -16,7 +16,7 @@
 (custom-set-faces
  '(default ((t (:family "Ubuntu Mono" :foundry "outline" :slant normal :weight normal :height 180 :width normal))))
 
- '(font-lock-builtin-face ((t (:foreground "#d5c4a1"))))
+ '(font-lock-builtin-face ((t (:foreground "#b9aa95"))))
  '(font-lock-comment-face ((t (:foreground "#ffff00"))))
  '(font-lock-constant-face ((t (:foreground "ff7070"))))
  '(font-lock-doc-face ((t (:foreground "#44b340"))))
@@ -40,7 +40,6 @@
 (set-face-foreground 'minibuffer-prompt "yellow")
 (setq cursor-type 'box)
 (set-cursor-color "#aaeeaa")
-
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (add-to-list 'load-path              "~/.emacs.d/themes/")
 
