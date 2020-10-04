@@ -14,7 +14,7 @@
  '(tooltip-mode nil))
 
 (custom-set-faces
- '(default ((t (:family "Ubuntu Mono" :foundry "outline" :slant normal :weight normal :height 165 :width normal))))
+ '(default ((t (:family "Ubuntu Mono" :foundry "outline" :slant normal :weight normal :height 180 :width normal))))
 
  '(font-lock-builtin-face ((t (:foreground "gray"))))
  '(font-lock-comment-face ((t (:foreground "#44b340"))))
@@ -35,7 +35,7 @@
 (set-face-foreground 'vertical-border "gray")
 (set-background-color "#333333")
 (set-foreground-color "#dddddd")
-(set-face-foreground 'dired-directory "#ffcccc")
+;;(set-face-foreground 'dired-directory "#ffcccc")
 (add-to-list 'default-frame-alist '(foreground-color . "#dddddd"))
 (global-font-lock-mode 1)
 (set-face-foreground 'minibuffer-prompt "yellow")
@@ -59,7 +59,7 @@
 (setq inhibit-startup-message t)
 (setq initial-scratch-message ";; Today will be a better day.")
 (defun display-startup-echo-area-message ()
-  (message ""))
+(message ""))
 
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
@@ -71,7 +71,7 @@
 (define-key global-map (kbd "C-x e") 'async-shell-command)
 (define-key global-map (kbd "C-x g") 'goto-line)
 (define-key global-map (kbd "C-x C-a") 'mark-whole-buffer)
-(define-key global-map (kbd "C-S-u") 'scroll-down)
+(define-key global-map (kbd "C-u") 'scroll-down)
 (define-key global-map (kbd "C-S-d") 'scroll-up)
 (define-key global-map (kbd "C-S-f") 'forward-word)
 (define-key global-map (kbd "C-S-b") 'backward-word)
