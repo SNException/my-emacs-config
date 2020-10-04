@@ -40,7 +40,7 @@
 (global-font-lock-mode 1)
 (set-face-foreground 'minibuffer-prompt "yellow")
 (setq cursor-type 'box)
-(set-cursor-color "green")
+(set-cursor-color "#aaeeaa")
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (add-to-list 'load-path              "~/.emacs.d/themes/")
@@ -71,7 +71,40 @@
 (define-key global-map (kbd "C-x e") 'async-shell-command)
 (define-key global-map (kbd "C-x g") 'goto-line)
 (define-key global-map (kbd "C-x C-a") 'mark-whole-buffer)
-(define-key global-map (kbd "C-u") 'scroll-down)
-(define-key global-map (kbd "C-S-d") 'scroll-up)
 (define-key global-map (kbd "C-S-f") 'forward-word)
 (define-key global-map (kbd "C-S-b") 'backward-word)
+
+(defun scroll-half-page-down ()
+  (interactive)
+  (scroll-down (/ (window-body-height) 2)))
+
+(defun scroll-half-page-up ()
+  (interactive)
+  (scroll-up (/ (window-body-height) 2)))
+
+(global-set-key (kbd "C-v") 'scroll-half-page-up)
+(define-key global-map (kbd "C-S-d") 'scroll-half-page-up)
+(global-set-key (kbd "C-u") 'scroll-half-page-down)
+
+(defun make ()
+  (interactive)
+  (setq compilation-scroll-output t)
+  (compile cat-build-path)
+)
+
+(defun run ()
+  (interactive)
+  (async-shell-command cat-run-path)
+)
+
+(defun set-build-path()
+  (interactive)
+  (setq build-path (read-directory-name "Enter your build path: "))
+  (setq build-path2 (concat "\"" build-path))
+  (setq build-path3 (concat build-path2 "\""))
+  (setq cat-build-path (concat "make -C " build-path3))
+  (setq cat-run-path (concat "make run -C " build-path3))
+)
+
+(define-key global-map (kbd "<f5>") 'make)
+(define-key global-map (kbd "<f6>") 'run)
