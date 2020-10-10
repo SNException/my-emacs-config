@@ -1,0 +1,138 @@
+* Configuration
+
+** Disable GUI cruft
+
+Disable all the GUI stuff to give us more screen to view the actual important things
+like code. Since everything can be accessed via keyboard shortcuts there is no point
+anyway in having any gui components.
+
+#+BEGIN_SRC emacs-lisp
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(tooltip-mode -1)
+#+END_SRC
+
+** Disable startup ads
+
+Lets disable all the advertisment we get on startup.
+
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-startup-screen t)
+(setq inhibit-startup-message t)
+(setq initial-scratch-message ";; Today will be a better day.")
+(defun display-startup-echo-area-message ()
+  (message ""))
+#+END_SRC
+
+** Disable backup files
+
+We disable all of the backup files that emacs creates since it just clutters up the current
+working directory and provides little to no benefit (most of the files are in VCS anyay).
+Also sometimes you commit those files by mistake which is super annoying.
+
+#+BEGIN_SRC emacs-lisp
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+(setq backup-directory-alist '(("." . "~/.emacs_saves")))
+#+END_SRC
+
+** Build and run project
+
+Make it easier to build and run any project inside emacs itself.
+
+#+BEGIN_SRC emacs-lisp
+(defun make ()
+  (interactive)
+  (setq compilation-scroll-output t)
+  (compile cat-build-path)
+)
+(defun run ()
+  (interactive)
+  (async-shell-command cat-run-path)
+)
+(defun set-build-path()
+  (interactive)
+  (setq build-path (read-directory-name "Enter your build path: "))
+  (setq build-path2 (concat "\"" build-path))
+  (setq build-path3 (concat build-path2 "\""))
+  (setq cat-build-path (concat "make -C " build-path3))
+  (setq cat-run-path (concat "make run -C " build-path3))
+)
+#+END_SRC
+
+** Keymappings
+
+Some nice keymappings.
+
+#+BEGIN_SRC emacs-lisp
+(define-key global-map (kbd "M-q") 'quick-calc)
+(define-key global-map (kbd "M-n") 'dabbrev-expand)
+(define-key global-map (kbd "C-z") 'undo)
+(define-key global-map (kbd "C-ü") 'beginning-of-buffer)
+(define-key global-map (kbd "C-+") 'end-of-buffer)
+(define-key global-map (kbd "C-x e") 'async-shell-command)
+(define-key global-map (kbd "C-x C-a") 'mark-whole-buffer)
+(define-key global-map (kbd "C-S-f") 'forward-word)
+(define-key global-map (kbd "C-S-b") 'backward-word)
+(global-set-key (kbd "C-v") 'scroll-half-page-up)
+(define-key global-map (kbd "C-S-v") 'scroll-half-page-down)
+(global-set-key (kbd "<f12>") (lambda() (interactive)(find-file "~/.emacs.d/config.org")))
+(global-set-key (kbd "C-,") 'rem)
+(define-key global-map (kbd "<f5>") 'make)
+(define-key global-map (kbd "<f6>") 'run)
+#+END_SRC
+
+** Styling
+
+Just styling emacs.
+
+#+BEGIN_SRC emacs-lisp
+(set-fringe-mode 0)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(add-to-list 'load-path              "~/.emacs.d/themes/")
+(custom-set-faces
+ '(default ((t (
+ :family "Ubuntu Mono" :foundry "outline" :slant normal :weight normal :height 178 :width normal))))
+ )
+(add-to-list 'default-frame-alist '(background-color . "#d9d9d9"))
+#+END_SRC
+
+** Misc
+
+Just some random stuff.
+
+#+BEGIN_SRC emacs-lisp
+
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+(setq-default indent-tabs-mode nil)
+(remove-hook 'find-file-hooks 'vc-refresh-state)
+(setq scroll-error-top-bottom t)
+
+(defun psvm ()
+  (interactive)
+  (insert "public static void main(final String[] args) {")
+  (newline)
+  (insert "}")
+  (previous-line)
+  (end-of-line)
+  (newline)
+  (indent-according-to-mode))
+
+(defun rem ()
+  (interactive)
+  (beginning-of-line)
+  (insert "// ")
+  (end-of-line))
+
+(defun scroll-half-page-down ()
+  (interactive)
+  (scroll-down (/ (window-body-height) 2)))
+
+(defun scroll-half-page-up ()
+  (interactive)
+  (scroll-up (/ (window-body-height) 2)))
+
+#+END_SRC
+
+
