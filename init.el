@@ -6,7 +6,7 @@
 
 (setq inhibit-startup-screen t)
 (setq inhibit-startup-message t)
-(setq initial-scratch-message ";; Today will be a better day.")
+(setq initial-scratch-message ";; The quick brown fox jumps over the lazy dog")
 (defun display-startup-echo-area-message ()
   (message ""))
 
