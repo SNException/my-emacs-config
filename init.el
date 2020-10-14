@@ -1,6 +1,7 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(fringe-mode -1)
 (show-paren-mode)
 (setq column-number-mode t)
 
@@ -11,15 +12,34 @@
   (message ""))
 
 (remove-hook 'find-file-hooks 'vc-refresh-state)
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 (setq scroll-error-top-bottom t)
 (setq-default indent-tabs-mode nil)
 
 (custom-set-faces
- '(default ((t (:family "Ubuntu Mono" :foundry "outline" :slant normal :weight normal :height 160 :width normal)))))
-(add-to-list 'default-frame-alist '(background-color . "#cacaca"))
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
+ '(default ((t (:family "Ubuntu Mono" :foundry "outline" :slant normal :weight normal :height 180 :width normal))))
+ '(font-lock-comment-face ((t (:foreground "#bb0000"))))
+ '(font-lock-doc-face ((t (:foreground "#bb0000"))))
+ '(font-lock-string-face ((t (:foreground "#000000"))))
+ '(font-lock-keyword-face ((t (:foreground "#000000" ))))
+ '(font-lock-type-face ((t (:foreground "#000000"))))
+ '(font-lock-constant-face ((t (:foreground "#000000"))))
+ '(font-lock-function-name-face ((t (:foreground "#000000")))) 
+ '(font-lock-variable-name-face ((t (:foreground "#000000"))))
+ '(font-lock-builtin-face ((t (:foreground "#000000"))))
+ '(font-lock-preprocessor-face ((t (:foreground "#000000"))))
+ '(font-lock-negation-char-face ((t nil)))
+ '(isearch ((t (:foreground "black" :background "#fa87a1"))))
+)
+
+(set-background-color "#f6f1e9")
+(set-foreground-color "#000000")
+
 
 (define-key global-map (kbd "C-S-f") 'forward-word)
 (define-key global-map (kbd "C-S-b") 'backward-word)
+(define-key global-map (kbd "C-S-v") 'scroll-down)
+(global-set-key "\M-n" "\C-u1\C-v")
+(global-set-key "\M-p" "\C-u1\M-v")
