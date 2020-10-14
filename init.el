@@ -19,24 +19,8 @@
 (setq-default indent-tabs-mode nil)
 
 (custom-set-faces
- '(default ((t (:family "Ubuntu Mono" :foundry "outline" :slant normal :weight normal :height 180 :width normal))))
- '(font-lock-comment-face ((t (:foreground "#bb0000"))))
- '(font-lock-doc-face ((t (:foreground "#bb0000"))))
- '(font-lock-string-face ((t (:foreground "#000000"))))
- '(font-lock-keyword-face ((t (:foreground "#000000" ))))
- '(font-lock-type-face ((t (:foreground "#000000"))))
- '(font-lock-constant-face ((t (:foreground "#000000"))))
- '(font-lock-function-name-face ((t (:foreground "#000000")))) 
- '(font-lock-variable-name-face ((t (:foreground "#000000"))))
- '(font-lock-builtin-face ((t (:foreground "#000000"))))
- '(font-lock-preprocessor-face ((t (:foreground "#000000"))))
- '(font-lock-negation-char-face ((t nil)))
- '(isearch ((t (:foreground "black" :background "#fa87a1"))))
+ '(default ((t (:family "Ubuntu Mono" :foundry "outline" :slant normal :weight normal :height 195 :width normal))))
 )
-
-(set-background-color "#f6f1e9")
-(set-foreground-color "#000000")
-
 
 (define-key global-map (kbd "C-S-f") 'forward-word)
 (define-key global-map (kbd "C-S-b") 'backward-word)
