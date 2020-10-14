@@ -11,6 +11,7 @@
 (remove-hook 'find-file-hooks 'vc-refresh-state)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (show-paren-mode)
+(global-auto-revert-mode 1)
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 (setq scroll-error-top-bottom t)
